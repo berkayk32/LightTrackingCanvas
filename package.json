@@ -1,17 +1,26 @@
 {
   "name": "lighttrackingcanvas-master",
   "version": "1.0.0",
+<<<<<<< HEAD
   "main": "app.js",
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
     "serialport": "^8.0.5"
+=======
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "express-handlebars": "^3.1.0",
+    "express": "^4.17.1"
+>>>>>>> bd056db215f158c48571f8b42298f5f785895b34
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
+<<<<<<< HEAD
   "license": "ISC",
   "repository": {
     "type": "git",
@@ -22,4 +31,7 @@
   },
   "homepage": "https://github.com/berkayk32/LightTrackingCanvas#readme",
   "description": ""
+=======
+  "license": "ISC"
+>>>>>>> bd056db215f158c48571f8b42298f5f785895b34
 }
