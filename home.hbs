@@ -3,6 +3,9 @@
 
 <head>
     <title>Light Position</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
 </head>
 
 <body>
@@ -11,48 +14,64 @@
     <p id="Angle"></p>
 
     <script>
-        var canvas = document.getElementById('Arc');
-        var ctx = canvas.getContext('2d');
-        var ctx2 = canvas.getContext('2d');
-        var x = 100;
-        var y = 100;
-        var radius = 80;
-        var startAngle = 0 * Math.PI;
-        var endAngle = 1 * Math.PI;
-        var counterClockwise = false;
-        ctx.beginPath();
-        ctx.arc(x, y, radius, startAngle, endAngle, true);
-        ctx.lineWidth = 1;
-        // line color
-        ctx.strokeStyle = 'green';
+
+    </script>
+    <script>
+        function ajaxCall() {
+            $.ajax({
+                url: "http://localhost:8080/data", success: function (result) {
+                    //do whatever you want with the returned data (in result)
+                    //f.e. to update something on your web page, you want something like:
+                    document.getElementById("Angle").innerHTML = result.Angle;
+                    var canvas = document.getElementById('Arc');
+                    var ctx = canvas.getContext('2d');
+                    var ctx2 = canvas.getContext('2d');
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx2.clearRect(0, 0, canvas.width, canvas.height);
+                    var x = 100;
+                    var y = 100;
+                    var radius = 80;
+                    var startAngle = 0 * Math.PI;
+                    var endAngle = 1 * Math.PI;
+                    var counterClockwise = false;
+                    ctx.beginPath();
+                    ctx.arc(x, y, radius, startAngle, endAngle, true);
+                    ctx.lineWidth = 1;
+                    // line color
+                    ctx.strokeStyle = 'green';
 
 
-        var anglefromesp = 180;
-        
-        document.getElementById("Angle").innerText = anglefromesp;
+                    var anglefromesp = document.getElementById("Angle").innerText
 
-        var angle = getAngle(anglefromesp);
+                    //document.getElementById("Angle").innerText = anglefromesp;
 
-        var startAngle2 = -(angle - 0.01) * Math.PI;
-        var endAngle2 = -(angle + 0.01) * Math.PI;
-        ctx.stroke();
-        ctx2.beginPath();
-        ctx2.arc(x, y, radius, startAngle2, endAngle2, true);
-        ctx2.lineWidth = 10;
-        // line color
-        ctx2.strokeStyle = 'Blue';
-        ctx2.stroke();
+                    var angle = getAngle(anglefromesp);
 
-        function getAngle(angle) {
-            var number
-            if (angle == 180) {
-                angle--
-            }
+                    var startAngle2 = -(angle - 0.01) * Math.PI;
+                    var endAngle2 = -(angle + 0.01) * Math.PI;
+                    ctx.stroke();
+                    ctx2.beginPath();
+                    ctx2.arc(x, y, radius, startAngle2, endAngle2, true);
+                    ctx2.lineWidth = 10;
+                    // line color
+                    ctx2.strokeStyle = 'Blue';
+                    ctx2.stroke();
 
-            number = ((angle % 180) / 180);
-            return number;
+                    function getAngle(angle) {
+                        var number
+                        if (angle == 180) {
+                            angle--
+                        }
+
+                        number = ((angle % 180) / 180);
+                        return number;
+                    }
+
+                }
+            })
+
         }
-
+        setInterval(ajaxCall, 30)
     </script>
 </body>
 
